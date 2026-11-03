@@ -14,7 +14,7 @@ export function Workload({state,groups,today}:Props){
  };
  return <section className="workload" aria-label={zh?'未来两周工作量':'Workload, next two weeks'}>
   <header><div><p className="eyebrow">{zh?'工作量':'WORKLOAD'}</p><h2>{zh?'未来两周':'Next two weeks'}</h2></div><p className="small muted">{zh?`本周 ${week} 项 · 下周 ${nextWeek} 项`:`This week ${week} · next week ${nextWeek}`}</p></header>
-  <div className="workload-bars" role="list">{rows.map(r=><div role="listitem" key={r.day} className={`workload-day level-${r.level}${r.day===today?' today':''}`} title={hint(r)} aria-label={hint(r)}><i/><span>{Number(r.day.slice(8))}</span></div>)}</div>
+  <div className="workload-bars" role="list">{rows.map(r=><div role="listitem" key={r.day} className={`workload-day level-${r.level}${r.day===today?' today':''}`} tabIndex={0} aria-label={hint(r)}><i/><span>{Number(r.day.slice(8))}</span><div className="workload-tooltip" aria-hidden="true">{hint(r)}</div></div>)}</div>
   {peak&&<p className="small muted workload-peak">{zh?`最忙的一天是 ${label(peak.day)}（${peak.tasks+peak.exams} 项），建议提前开始。`:`Busiest day: ${label(peak.day)} (${peak.tasks+peak.exams} items). Start early.`}</p>}
  </section>;
 }
